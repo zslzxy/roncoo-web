@@ -28,6 +28,17 @@
       indexApi.websiteInfo().then((res) => {
         setStorage('WebsiteInfo', res, 60)
         info.value = res
+      }).catch((error) => {
+        console.warn('Failed to load website info in footer:', error)
+        const defaultInfo = {
+          websiteName: 'Roncoo Education',
+          websiteLogo: '/logo.png',
+          websiteDesc: '领课网络在线教育系统',
+          websiteIcp: 'ICP备案号',
+          websiteCopyright: '© 2024 Roncoo Education. All rights reserved.'
+        }
+        setStorage('WebsiteInfo', defaultInfo, 60)
+        info.value = defaultInfo
       })
     }
   })

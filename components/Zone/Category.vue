@@ -42,7 +42,41 @@
   const height = ref(360)
 
   onMounted(async () => {
-    list.value = await indexApi.categoryList()
+    try {
+      list.value = await indexApi.categoryList()
+    } catch (error) {
+      console.warn('Failed to load category list:', error)
+      // 提供默认分类数据
+      list.value = [
+        {
+          id: 1,
+          categoryName: '前端开发',
+          list: [
+            { id: 11, categoryName: 'Vue.js' },
+            { id: 12, categoryName: 'React' },
+            { id: 13, categoryName: 'JavaScript' }
+          ]
+        },
+        {
+          id: 2,
+          categoryName: '后端开发',
+          list: [
+            { id: 21, categoryName: 'Java' },
+            { id: 22, categoryName: 'Python' },
+            { id: 23, categoryName: 'Node.js' }
+          ]
+        },
+        {
+          id: 3,
+          categoryName: '移动开发',
+          list: [
+            { id: 31, categoryName: 'Android' },
+            { id: 32, categoryName: 'iOS' },
+            { id: 33, categoryName: 'Flutter' }
+          ]
+        }
+      ]
+    }
   })
 
   function changeWidth(item) {

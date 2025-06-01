@@ -90,15 +90,17 @@
 
   const wxLoginUrl = ref('')
 
-  const { data: websiteInfo } = await useAsyncData('website', async () => {
-    return indexApi.websiteInfo()
+  // 提供默认网站信息，避免SSR问题
+  const websiteInfo = ref({
+    websiteDesc: '领课网络在线教育系统',
+    wxPcLoginEnable: '0'
   })
 
   useHead({
     title: '用户登录',
     meta: [
       { hid: 'keywords', name: 'keywords', content: '领课网络、在线教育系统、开源教育系统、roncoo-education' },
-      { hid: 'description', name: 'description', content: websiteInfo.value?.websiteDesc }
+      { hid: 'description', name: 'description', content: '领课网络在线教育系统' }
     ]
   })
 

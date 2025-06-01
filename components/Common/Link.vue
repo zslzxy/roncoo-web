@@ -19,6 +19,16 @@
       indexApi.websiteLink().then((res) => {
         setStorage('WebsiteLink', res, 60)
         friendLinkList.value = res
+      }).catch((error) => {
+        console.warn('Failed to load website links:', error)
+        // 提供默认友情链接数据
+        const defaultLinks = [
+          { linkName: '领课网络', linkUrl: 'https://www.roncoo.com', linkTarget: '_blank' },
+          { linkName: 'GitHub', linkUrl: 'https://github.com/roncoo', linkTarget: '_blank' },
+          { linkName: '在线教育', linkUrl: '#', linkTarget: '_self' }
+        ]
+        setStorage('WebsiteLink', defaultLinks, 60)
+        friendLinkList.value = defaultLinks
       })
     }
   })

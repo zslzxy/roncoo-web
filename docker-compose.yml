@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  roncoo-web:
+    build:
+      context: .
+      dockerfile: Dockerfile.final
+    container_name: roncoo-web-app
+    ports:
+      - "12000:3000"
+    environment:
+      - NODE_ENV=development
+      - VITE_BASE_URL=https://teach.cqbaizhi.com
+      - HOST=0.0.0.0
+      - PORT=3000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
