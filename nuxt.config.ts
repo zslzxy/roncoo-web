@@ -17,6 +17,12 @@ export default defineNuxtConfig({
     }
   },
 
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.VITE_BASE_URL || 'http://localhost:7700'
+    }
+  },
+
   vite: {
     build: {
       minify: 'terser',

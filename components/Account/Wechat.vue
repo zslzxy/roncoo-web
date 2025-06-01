@@ -35,6 +35,15 @@
       indexApi.websiteInfo().then((res) => {
         setStorage('WebsiteInfo', res, 60)
         websiteInfo.value = res
+      }).catch((error) => {
+        console.warn('Failed to load website info in wechat:', error)
+        const defaultInfo = {
+          websiteName: 'Roncoo Education',
+          websiteDomain: 'https://www.roncoo.com/',
+          websiteDesc: '领课网络在线教育系统'
+        }
+        setStorage('WebsiteInfo', defaultInfo, 60)
+        websiteInfo.value = defaultInfo
       })
     }
     handleBinding()

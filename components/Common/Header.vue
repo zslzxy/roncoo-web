@@ -52,6 +52,15 @@
       indexApi.websiteInfo().then((res) => {
         setStorage('WebsiteInfo', res, 60)
         info.value = res
+      }).catch((error) => {
+        console.warn('Failed to load website info:', error)
+        const defaultInfo = {
+          websiteName: 'Roncoo Education',
+          websiteLogo: '/logo.png',
+          websiteDesc: '领课网络在线教育系统'
+        }
+        setStorage('WebsiteInfo', defaultInfo, 60)
+        info.value = defaultInfo
       })
     }
 
@@ -61,6 +70,16 @@
       indexApi.websiteNav().then((res) => {
         setStorage('WebsiteNav', res, 60)
         nav.value = res
+      }).catch((error) => {
+        console.warn('Failed to load website nav:', error)
+        const defaultNav = [
+          { navName: '首页', navUrl: '/', navTarget: '_self' },
+          { navName: '课程', navUrl: '/course-list', navTarget: '_self' },
+          { navName: '讲师', navUrl: '/lecturer', navTarget: '_self' },
+          { navName: '关于我们', navUrl: '/about', navTarget: '_self' }
+        ]
+        setStorage('WebsiteNav', defaultNav, 60)
+        nav.value = defaultNav
       })
     }
     const token = getToken()

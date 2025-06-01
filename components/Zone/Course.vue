@@ -16,11 +16,49 @@
 <script setup>
   import { indexApi } from '@/api/index.js'
 
-  const zoneData = ref()
-  onMounted(async () => {
-    const res = await indexApi.zoneList({})
-    zoneData.value = res
-  })
+  // 直接提供默认专区数据，避免SSR问题
+  const zoneData = ref([
+    {
+      zoneName: '热门课程',
+      zoneDesc: '精选优质课程推荐',
+      courseList: [
+        {
+          id: 1,
+          courseName: 'Vue.js 从入门到精通',
+          courseImg: 'https://via.placeholder.com/300x200/42A5F5/FFFFFF?text=Vue.js课程',
+          coursePrice: '¥199',
+          lecturerName: '张老师'
+        },
+        {
+          id: 2,
+          courseName: 'React 实战开发',
+          courseImg: 'https://via.placeholder.com/300x200/66BB6A/FFFFFF?text=React课程',
+          coursePrice: '¥299',
+          lecturerName: '李老师'
+        }
+      ]
+    },
+    {
+      zoneName: '新课上线',
+      zoneDesc: '最新发布的课程内容',
+      courseList: [
+        {
+          id: 3,
+          courseName: 'Node.js 后端开发',
+          courseImg: 'https://via.placeholder.com/300x200/FFA726/FFFFFF?text=Node.js课程',
+          coursePrice: '¥399',
+          lecturerName: '王老师'
+        },
+        {
+          id: 4,
+          courseName: 'Python 数据分析',
+          courseImg: 'https://via.placeholder.com/300x200/AB47BC/FFFFFF?text=Python课程',
+          coursePrice: '¥299',
+          lecturerName: '赵老师'
+        }
+      ]
+    }
+  ])
 </script>
 <style lang="scss" scoped>
   .i_content {

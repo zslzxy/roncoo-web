@@ -5,7 +5,7 @@ import { setStorage } from '@/utils/storage.js'
 
 // create an axios instance
 const request = axios.create({
-  baseURL: process.client ? '/gateway' : import.meta.env.VITE_BASE_URL,
+  baseURL: process.client ? '/gateway' : (import.meta.env.VITE_BASE_URL || 'http://localhost:7700'),
   timeout: 60000 // request timeout
 })
 

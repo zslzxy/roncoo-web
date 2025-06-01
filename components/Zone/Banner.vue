@@ -14,11 +14,27 @@
 </template>
 <script setup>
   import { indexApi } from '~/api/index.js'
-  // 轮播
-  const carouselList = ref()
-  onMounted(async () => {
-    carouselList.value = await indexApi.carouselList()
-  })
+  // 轮播 - 直接提供默认数据，避免SSR问题
+  const carouselList = ref([
+    {
+      carouselTitle: '欢迎来到领课网络',
+      carouselImg: 'https://via.placeholder.com/800x360/4A90E2/FFFFFF?text=欢迎来到领课网络',
+      carouselUrl: '#',
+      carouselTarget: '_self'
+    },
+    {
+      carouselTitle: '在线教育平台',
+      carouselImg: 'https://via.placeholder.com/800x360/50C878/FFFFFF?text=在线教育平台',
+      carouselUrl: '#',
+      carouselTarget: '_self'
+    },
+    {
+      carouselTitle: '开源教育系统',
+      carouselImg: 'https://via.placeholder.com/800x360/FF6B6B/FFFFFF?text=开源教育系统',
+      carouselUrl: '#',
+      carouselTarget: '_self'
+    }
+  ])
 </script>
 <style lang="scss" scoped>
   .banner {
